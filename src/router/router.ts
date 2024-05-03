@@ -1,8 +1,9 @@
-import { createMemoryHistory, createRouter, type Router } from 'vue-router'
+import HelloWorld from '@/components/HelloWorld.vue'
+import { createMemoryHistory, createRouter } from 'vue-router'
 
 
 const routes: any = [
-
+    { path: '/', component: HelloWorld }
 
 ]
 
