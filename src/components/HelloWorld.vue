@@ -1,8 +1,10 @@
 <script setup>
-import Contador     from './Contador.vue';
-import Message      from './Message.vue';
-import Items        from './Items.vue';
-import ToggleButton from './ToggleButton.vue';
+import Contador      from './Contador.vue';
+import Message       from './Message.vue';
+import Items         from './Items.vue';
+import ToggleButton  from './ToggleButton.vue';
+import Multiplicador from './Multiplicador.vue';
+import Etiqueta      from './Etiqueta.vue';
 </script>
 
 <template>
@@ -10,6 +12,8 @@ import ToggleButton from './ToggleButton.vue';
   <Message />
   <Items />
   <ToggleButton />
+  <Multiplicador />
+  <Etiqueta />
 </template>
 
 <style scoped>
