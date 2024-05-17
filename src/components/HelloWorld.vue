@@ -1,19 +1,32 @@
 <script setup>
-import Contador      from './Contador.vue';
-import Message       from './Message.vue';
-import Items         from './Items.vue';
-import ToggleButton  from './ToggleButton.vue';
-import Multiplicador from './Multiplicador.vue';
-import Etiqueta      from './Etiqueta.vue';
+import Contador        from './Contador.vue';
+import Message         from './Message.vue';
+import Items           from './Items.vue';
+import ToggleButton    from './ToggleButton.vue';
+import Multiplicador   from './Multiplicador.vue';
+import Etiqueta        from './Etiqueta.vue';
+import ComponentePadre from './ComponentePadre.vue';
+import Navbar          from './Navbar.vue';
 </script>
 
 <template>
-  <Contador />
-  <Message />
-  <Items />
-  <ToggleButton />
-  <Multiplicador />
-  <Etiqueta />
+  <div class="container">
+    <Navbar />
+    <div class="row">
+        <div class="col">
+          <Contador />
+          <Message />
+          <Items />
+          <ToggleButton />
+        </div>
+        
+        <div class="col">
+          <Multiplicador />
+          <Etiqueta />
+          <ComponentePadre /> 
+        </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
