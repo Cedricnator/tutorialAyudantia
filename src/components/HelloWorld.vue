@@ -1,11 +1,13 @@
 <script setup>
 import Contador from './Contador.vue';
 import Message from './Message.vue';
+import Items from './Items.vue';
 </script>
 
 <template>
   <Contador />
   <Message />
+  <Items />
 </template>
 
 <style scoped>
