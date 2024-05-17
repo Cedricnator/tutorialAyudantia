@@ -1,9 +1,11 @@
 <script setup>
 import Contador from './Contador.vue';
+import Message from './Message.vue';
 </script>
 
 <template>
   <Contador />
+  <Message />
 </template>
 
 <style scoped>
