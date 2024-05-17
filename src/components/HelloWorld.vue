@@ -1,13 +1,15 @@
 <script setup>
-import Contador from './Contador.vue';
-import Message from './Message.vue';
-import Items from './Items.vue';
+import Contador     from './Contador.vue';
+import Message      from './Message.vue';
+import Items        from './Items.vue';
+import ToggleButton from './ToggleButton.vue';
 </script>
 
 <template>
   <Contador />
   <Message />
   <Items />
+  <ToggleButton />
 </template>
 
 <style scoped>
