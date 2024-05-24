@@ -2,6 +2,7 @@
     <div class="container">
         <!-- Título del componente padre-->
         <h1 class="text-center my-4">Componente Padre</h1>
+        <h2 v-if="message">{{message}}</h2>
         <!-- Componente hijo con un prop y un evento personalizado-->
         <Hijo :mensaje="mensajePadre" @actualizarMensaje="mensajePadre =
             $event" />
@@ -18,7 +19,7 @@
             <div v-for="(tarea, index) in tareas" :key="index" class="form-check">
                 <!-- Checkbox vinculado a la propiedad completada de cada tarea-->
                 <input type="checkbox" v-model="tarea.completada" :id="'tarea' +
-                    index" class="form-check-input">
+                index" class="form-check-input" @change="actualizarTarea(index)">
                 <label :for="'tarea' + index" class="form-check-label">{{
                     tarea.nombre }}</label>
                 <!-- Mensaje condicional que se muestra cuando la tarea está
@@ -41,16 +42,51 @@ export default  {
         return {
             mensajePadre: 'Hola desde el padre', // Mensaje inicial del padre
             tareas: [ // Lista inicial de tareas
-                { nombre: 'Tarea 1', completada: false },
-                { nombre: 'Tarea 2', completada: false },
-                { nombre: 'Tarea 3', completada: false }
-            ]
+                // { nombre: 'Tarea 1', completada: false },
+                // { nombre: 'Tarea 2', completada: false },
+                // { nombre: 'Tarea 3', completada: false }
+            ],
+            message: ""
         }
     },
     methods: {
         resetearMensaje() {
             this.mensajePadre = 'Hola desde el padre'; // Método para resetear el mensaje del padre
+        },
+        obtenerMensaje() {
+            fetch('http://localhost:3000/hello')
+            .then(response => response.text())
+            .then(data => {
+                console.log(data)
+                this.message = data;
+            });
+        },
+        fetchTareas() {
+            fetch('http://localhost:3000/tareas')
+                .then(response => response.json())
+                .then(data => {
+                this.tareas = data;
+            });
+        },
+        actualizarTarea(index) {
+            fetch('http://localhost:3000/tareas', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', },
+                body: JSON.stringify({
+                    index: index,
+                    completada: this.tareas[index].completada
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(`Tarea ${index} actualizada:
+                ${data.completada}`);
+            });
         }
+    },
+    created(){
+        this.obtenerMensaje();
+        this.fetchTareas();
     }
 }
 </script>
