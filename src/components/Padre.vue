@@ -2,6 +2,7 @@
     <div class="container">
         <!-- Título del componente padre-->
         <h1 class="text-center my-4">Componente Padre</h1>
+        <h2 v-if="message">{{message}}</h2>
         <!-- Componente hijo con un prop y un evento personalizado-->
         <Hijo :mensaje="mensajePadre" @actualizarMensaje="mensajePadre =
             $event" />
@@ -44,13 +45,22 @@ export default  {
                 { nombre: 'Tarea 1', completada: false },
                 { nombre: 'Tarea 2', completada: false },
                 { nombre: 'Tarea 3', completada: false }
-            ]
+            ],
+            message: ""
         }
     },
     methods: {
         resetearMensaje() {
             this.mensajePadre = 'Hola desde el padre'; // Método para resetear el mensaje del padre
+        },
+        obtenerMensaje() {
+            fetch('http://localhost:3000/hello')
+                .then(response => response.text())
+                .then(data => {
+                    this.mensaje = data;
+                });
         }
+
     }
 }
 </script>
